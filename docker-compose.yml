@@ -1,0 +1,17 @@
+version: '3'
+services: 
+
+  mysql:
+    image: mysql
+    cap_add: 
+      - SYS_NICE
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes: 
+      - ./data/db:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_DATABASE: food-delivery
+    ports: 
+      - "3306:3306"
