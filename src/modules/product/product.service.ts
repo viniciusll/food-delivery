@@ -95,4 +95,24 @@ export class ProductService {
 
     return deletedProduct;
   }
+
+  async findAllByCategory(categoryId: string) {
+    const category = await this.prisma.category.findFirst({
+      where: {
+        id: categoryId,
+      },
+    });
+
+    if (!category) {
+      throw new Error('Category not found');
+    }
+
+    return await this.prisma.product.findMany({
+      where: {
+        category: {
+          id: categoryId,
+        },
+      },
+    });
+  }
 }
