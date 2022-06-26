@@ -54,6 +54,18 @@ export class ProductController {
     return this.productService.findOne(id);
   }
 
+  @Get(':categoryId/products')
+  @ApiOperation({ summary: 'View products by category' })
+  @ApiResponse({
+    status: 200,
+    description: 'Product data listed successfully',
+    type: ListProductDto,
+    isArray: true,
+  })
+  findProductsByCategoryId(@Param('categoryId') id: string) {
+    return this.productService.findAllByCategory(id);
+  }
+
   @Patch(':id')
   @ApiOperation({ summary: 'Update product data' })
   @ApiResponse({
