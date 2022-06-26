@@ -54,7 +54,7 @@ export class ProductController {
     return this.productService.findOne(id);
   }
 
-  @Get(':categoryId/')
+  @Get(':categoryId/products')
   @ApiOperation({ summary: 'View products by category' })
   @ApiResponse({
     status: 200,
